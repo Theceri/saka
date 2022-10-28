@@ -16,6 +16,7 @@ app.config.from_object(Development)
 
 db.init_app(app)
 
+#The things the application should do before it receives the first request from the user
 @app.before_first_request
 def create_tables():
     db.create_all()
