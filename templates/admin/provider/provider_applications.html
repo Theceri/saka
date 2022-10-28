@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% from "includes/_macros.html" import render_field_with_errors, render_field %}
+{% include 'includes/_messages.html' %}
+
+<div class="container" style="padding-top: 15px;padding-bottom: 15px;">
+    <table class="table table-responsive table-sm table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Applicant Name</th>
+            <th scope="col">Job</th>
+            <th scope="col">Field</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date created</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for application in applications %}
+            <tr>
+                <th scope="row">{{ application.id }}</th>
+                <td scope="row">{{ application.provider.name }}</td>
+                <td scope="row">{{ application.job.name }}</td>
+                <td scope="row">{{ application.job.field.name }}</td>
+                <td scope="row">{{ application.status }}</td>
+                <td scope="row">{{ application.created.strftime('%B %d, %Y, %X' ) }}</td>
+                <td scope="row">
+                    <a class="btn btn-outline-success" href="{{ url_for('job_detail', id=application.job_id) }}">View Job</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

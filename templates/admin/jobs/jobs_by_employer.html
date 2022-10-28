@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% from "includes/_macros.html" import render_field_with_errors, render_field %}
+{% include 'includes/_messages.html' %}
+
+<div class="container" style="padding-top: 15px;padding-bottom: 15px;">
+
+    <table class="table table-responsive table-sm table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Job Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Qualifications</th>
+            <th scope="col">Field</th>
+            <th scope="col">Date created</th>
+            <th scope="col">Date updated</th>
+            <th scope="col">Actions</th>
+            <th scope="col">...</th>
+            <th scope="col">...</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+            <tr>
+                <th scope="row">{{ job.id }}</th>
+                <td scope="row">{{ job.name }}</td>
+                <td scope="row">{{ job.description|truncate(60)|safe }}</td>
+                <td scope="row">{{ job.qualifications|truncate(60)|safe }}</td>
+                <td scope="row">{{ job.field.name }}</td>
+                <td scope="row">{{ job.created.strftime('%B %d, %Y, %X' ) }}</td>
+                {% if job.updated %}
+                    <td scope="row">{{ job.updated.strftime('%B %d, %Y, %X' ) }}</td>
+                {% else %}
+                    <td scope="row"></td>
+                {% endif %}
+                <td scope="row">
+                    <a class="btn btn-outline-success" href="{{ url_for('job_detail', id=job.id) }}">View Job</a>
+                </td>
+                <td scope="row">
+                    <a class="btn btn-outline-success" href="{{ url_for('edit_job', id=job.id) }}">Edit Job</a>
+                </td>
+                <td scope="row">
+                    <a class="btn btn-outline-success" href="{{ url_for('view_applications', id=job.id) }}">View applications</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

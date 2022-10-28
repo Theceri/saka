@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% from "includes/_macros.html" import render_field_with_errors, render_field %}
+{% include 'includes/_messages.html' %}
+<div class="container" style="padding:10px;">
+    {% if currentuser.id == provider.user_id %}
+    <div>
+        <ul class="actions">
+            <li><a class="button alt mb-3" href="{{ url_for('edit_provider', id=provider.id ) }}">Edit</a></li>
+            <li><a class="button alt mb-3" href="{{ url_for('add_skills', id=provider.id ) }}">Add skills</a></li>
+        </ul>
+    </div><hr>
+    {% endif %}
+    <div>
+        <h5>Name: {{ provider.name }}</h5>
+    </div><hr>
+    <div>
+        <h6>Description</h6>
+        {{ provider.description }}
+    </div><hr>
+    <div>
+        <h6>Skills</h6><br>
+        <ul class="actions">
+            {% for skill in skills %}
+                <li><p class="button alt mb-3" >{{ skill.name }}</p></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

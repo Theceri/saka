@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% from "includes/_macros.html" import render_field_with_errors, render_field %}
+{% include 'includes/_messages.html' %}
+
+<div class="container" style="padding-top: 15px;padding-bottom: 15px;">
+    <h3>{{ job.name }}</h3>
+    <table class="table table-responsive table-sm table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Applicant Name</th>
+            <th scope="col">Applicant Field</th>
+            <th scope="col">Status</th>
+            <th scope="col">Created at</th>
+            <th scope="col">Actions</th>
+            <th scope="col">...</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for application in applications %}
+            <tr>
+                <th scope="row">{{ application.id }}</th>
+                <td scope="row">{{ application.provider.name }}</td>
+                <td scope="row">{{ application.provider.field.name }}</td>
+                <td scope="row">{{ application.status }}</td>
+                <td scope="row">{{ application.created.strftime('%B %d, %Y, %X' ) }}</td>
+                <td scope="row">
+                    <a class="btn btn-outline-success" href="{{ url_for('applicant_detail', id=application.provider_id) }}">View Applicant</a>
+                </td>
+                <td scope="row">
+                    <a class="btn btn-outline-success" href="{{ url_for('select_applicant', id=application.id) }}">Select for Job</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

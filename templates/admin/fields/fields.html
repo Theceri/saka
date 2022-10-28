@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% from "includes/_macros.html" import render_field_with_errors, render_field %}
+{% include 'includes/_messages.html' %}
+
+<div class="container" style="padding-top: 15px;padding-bottom: 15px;">
+    <div class="row">
+        <div class="col-12">
+            <ul class="actions">
+                <li><a class="button alt mb-3" href="{{ url_for('add_field') }}">Add Field</a></li>
+            </ul><hr>
+        </div>
+        <div class="col-12">
+            <h6>Fields</h6><hr>
+            <ul class="actions">
+                {% for field in fields %}
+                    <li><a class="button alt mb-3" href="{{ url_for('edit_field', id=field.id) }}">{{ field.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

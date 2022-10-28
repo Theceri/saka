@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% from "includes/_macros.html" import render_field_with_errors, render_field %}
+{% include 'includes/_messages.html' %}
+
+<div class="container" style="padding-top: 15px;padding-bottom: 15px;">
+    <form action="" method="POST" name="add_employer">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" id="name" value="{{ employer.name }}" required>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="description" id="description" required>
+                {{ employer.description }}
+            </textarea>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-outline-primary form-control" type="submit" id="submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

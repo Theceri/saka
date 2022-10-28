@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% from "includes/_macros.html" import render_field_with_errors, render_field %}
+{% include 'includes/_messages.html' %}
+
+<div class="container" style="padding-top: 15px;padding-bottom: 15px;">
+    <table class="table table-responsive table-sm table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date created</th>
+            <th scope="col">Date updated</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <th scope="row">{{ user.id }}</th>
+                <td scope="row">{{ user.full_name }}</td>
+                <td scope="row">{{ user.phone }}</td>
+                <td scope="row">{{ user.email }}</td>
+                <td scope="row">{{ user.created.strftime('%B %d, %Y, %X' ) }}</td>
+                {% if user.updated %}
+                    <td scope="row">{{ user.updated.strftime('%B %d, %Y, %X' ) }}</td>
+                {% else %}
+                    <td scope="row"></td>
+                {% endif %}
+    
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+
+
+

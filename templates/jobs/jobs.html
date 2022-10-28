@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% include 'includes/_messages.html' %}
+
+<div class="container"  style="padding: 10px;">
+    <div class="row">
+        {% for job in jobs.items %}
+        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <article>
+                <div class="content">
+                    
+                    <header>
+                        <h3>{{ job.name }}</h3>
+                    </header>
+                    <p>{{ job.description|truncate(60)|safe  }}</p>
+                    <ul class="actions">
+                        <li><a href="{{ url_for('job_detail', id=job.id) }}" class="button alt">Learn More</a></li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+        {% endfor %}
+    </div>
+    <div style="padding: 5px;">
+        <article>
+            <div class="content"> 
+                {% for page in jobs.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=2) %}
+                    {% if page %}
+                        <header>
+                            <a href="{{ url_for('jobs', page_num=page) }}" ><h6>{{ page }}</h6></a>
+                        </header>
+                    {% else %}
+                    ...
+                {% endif %}
+            {% endfor %}
+            </div>
+        </article>
+    </div>
+</div>
+
+
+{% endblock %}

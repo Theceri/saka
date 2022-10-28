@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% from "includes/_macros.html" import render_field_with_errors, render_field %}
+{% include 'includes/_messages.html' %}
+
+<div class="container" style="padding-top: 15px;padding-bottom: 15px;">
+    <table class="table table-responsive table-sm table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date created</th>
+            <th scope="col">Date updated</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for provider in providers %}
+            <tr>
+                <th scope="row">{{ provider.id }}</th>
+                <td scope="row">{{ provider.name }}</td>
+                <td scope="row">{{ provider.description|truncate(60)|safe  }}</td>
+                <td scope="row">{{ provider.user.full_name }}</td>
+                <td scope="row">{{ provider.user.email }}</td>
+                <td scope="row">{{ provider.created.strftime('%B %d, %Y, %X' ) }}</td>
+                {% if provider.updated %}
+                    <td scope="row">{{ provider.updated.strftime('%B %d, %Y, %X' ) }}</td>
+                {% else %}
+                    <td scope="row"></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+
+
+

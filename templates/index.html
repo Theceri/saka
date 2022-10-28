@@ -1,0 +1,106 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% include 'includes/_messages.html' %}
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h1>Saka: <span>Find jobs<br />
+					create jobs</span></h1>
+					<ul class="actions">
+						<li><a href="/login" class="button alt">Get Started</a></li>
+					</ul>
+				</div>
+			</section>
+
+		<!-- One -->
+			<section id="one">
+				<div class="inner">
+					<header>
+						<h2>What we do</h2>
+					</header>
+					<p>At Saka, we strive to connect you, the service provider to employers. </p>
+					<ul class="actions">
+						<li><a href="/jobs" class="button alt">Find Jobs</a></li>
+					</ul>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two">
+				<div class="inner">
+					<article>
+						<div class="content">
+							<header>
+								<h3>Employers</h3>
+							</header>
+							<div class="image fit">
+								<img src="{{ url_for('static', filename='images/pic01.jpg') }}" alt="" />
+							</div>
+							<p>Post a job and vet your best candidate based on their qualifications and experiences</p>
+							<ul class="actions">
+								<li><a href="{{url_for('signup', role='Employer') }}" class="button alt">Signup as employer</a></li>
+							</ul>
+						</div>
+					</article>
+					<article class="alt">
+						<div class="content">
+							<header>
+								<h3>Service Provider</h3>
+							</header>
+							<div class="image fit">
+								<img src="{{ url_for('static', filename='images/pic02.jpg') }}" alt="" />
+							</div>
+							<p>Apply for jobs and get selected based on your experiences and qualifications.</p>
+							<ul class="actions">
+								<li><a href="{{url_for('signup', role='Provider') }}" class="button alt">Signup as service provider</a></li>
+							</ul>
+						</div>
+					</article>
+				</div>
+			</section>
+
+
+{% endblock %}
+
+		<!-- Three -->
+		<section id="three">
+			<div class="inner">
+				<article>
+					<div class="content">
+						<span class="icon fa-laptop"></span>
+						<header>
+							<h3>Tempus Feugiat</h3>
+						</header>
+						<p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna lorem ullamcorper laoreet, lectus arcu.</p>
+						<ul class="actions">
+							<li><a href="#" class="button alt">Learn More</a></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<div class="content">
+						<span class="icon fa-diamond"></span>
+						<header>
+							<h3>Aliquam Nulla</h3>
+						</header>
+						<p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed.</p>
+						<ul class="actions">
+							<li><a href="#" class="button alt">Learn More</a></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+				<div class="content">
+						<span class="icon fa-laptop"></span>
+						<header>
+							<h3>Sed Magna</h3>
+						</header>
+						<p>Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula.</p>
+						<ul class="actions">
+							<li><a href="#" class="button alt">Learn More</a></li>
+						</ul>
+					</div>
+				</article>
+			</div>
+		</section>
+		
